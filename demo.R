@@ -19,7 +19,7 @@ visNetwork(nodes, friends)
 visNetwork(nodes, friends)  %>% visLegend()
 
 ledges <- data.frame(color = unique(nodes$color.background), 
-                    label = unique(c("Éä¼ı","ÀºÇò","»­»­", "»÷½£"))) 
+                    label = unique(c("å°„ç®­","ç¯®çƒ","ç”»ç”»", "å‡»å‰‘"))) 
 
 visNetwork(nodes, friends) %>%
   visOptions(selectedBy = "hobby")%>%
@@ -29,53 +29,53 @@ visNetwork(nodes, friends) %>%
 #install.packages("igraph")
 library(igraph)
 
-# Ñ¡¶¨ÓµÓĞºÏÊÊºÃÓÑÊıÁ¿µÄÓÃ»§
+# é€‰å®šæ‹¥æœ‰åˆé€‚å¥½å‹æ•°é‡çš„ç”¨æˆ·
 #uid <- 6
-# ÊäÈëID
-uid<-readline(prompt = "ÇëÊäÈëid£¨ÍÆ¼ö6»ò15£©: ")
-cat("ÄãÊäÈëµÄidÊÇ£º",uid)
+# è¾“å…¥ID
+uid<-readline(prompt = "è¯·è¾“å…¥idï¼ˆæ¨è6æˆ–15ï¼‰: ")
+cat("ä½ è¾“å…¥çš„idæ˜¯ï¼š",uid)
 
 
-# ºÃÓÑID
+# å¥½å‹ID
 friends.connected <- unique(c(friends$to[friends$from == uid], 
                               friends$from[friends$to == uid]))
 
-# ËùÓĞ¶ş¼¶ºÃÓÑ
+# æ‰€æœ‰äºŒçº§å¥½å‹
 friends.2nd <- c(friends$from[
   (friends$to %in% friends.connected)], 
   friends$to[
     (friends$from %in% friends.connected)])
 
-# ¸ÃÓÃ»§±¾ÉíÒ²»á±»°üº¬µ½¶ş¼¶ºÃÓÑÖĞ£¬ĞèÒªÌŞ³ı
+# è¯¥ç”¨æˆ·æœ¬èº«ä¹Ÿä¼šè¢«åŒ…å«åˆ°äºŒçº§å¥½å‹ä¸­ï¼Œéœ€è¦å‰”é™¤
 friends.2nd <- friends.2nd[friends.2nd!=uid]
 
-# °´¹²Í¬ºÃÓÑµÄÊıÁ¿£¨¹ØÁª¶È£©½øĞĞµ¹ĞòÅÅĞò
+# æŒ‰å…±åŒå¥½å‹çš„æ•°é‡ï¼ˆå…³è”åº¦ï¼‰è¿›è¡Œå€’åºæ’åº
 friends.recommand1 <- sort(table(friends.2nd), dec = T)
 
 #friends.recommand1
 
-# ¸ÃÓÃ»§ËùÔÚÑ§Ğ£
+# è¯¥ç”¨æˆ·æ‰€åœ¨å­¦æ ¡
 uschool<-unique(c(nodes$school [nodes$id  == uid]))
 
-#Óë¸ÃÓÃ»§ÔÚÍ¬Ò»Ñ§Ğ£µÄÈË
+#ä¸è¯¥ç”¨æˆ·åœ¨åŒä¸€å­¦æ ¡çš„äºº
 nodes.school<-unique(c(nodes$id[nodes$school == uschool]))
 nodes.school<- nodes.school[nodes.school!=uid]
 
 
-#¸ÃÓÃ»§µÄ°®ºÃÈº×é
+#è¯¥ç”¨æˆ·çš„çˆ±å¥½ç¾¤ç»„
 uhobby<-unique(nodes$hobby [nodes$id  == uid])
 
-#Óë¸ÃÓÃ»§ÓĞÍ¬Ò»°®ºÃµÄÈË
+#ä¸è¯¥ç”¨æˆ·æœ‰åŒä¸€çˆ±å¥½çš„äºº
 nodes.hobby<-unique(c(nodes$id[nodes$hobby == uhobby]))
 nodes.hobby<- nodes.hobby[nodes.hobby!=uid]
 
-#Óë¸ÃÓÃ»§ÔÚÍ¬Ò»Ñ§Ğ£»òÓĞÍ¬Ò»°®ºÃµÄÈË
+#ä¸è¯¥ç”¨æˆ·åœ¨åŒä¸€å­¦æ ¡æˆ–æœ‰åŒä¸€çˆ±å¥½çš„äºº
 bingji<-union(nodes.school,nodes.hobby)
 
-#Óë¸ÃÓÃ»§ÔÚÍ¬Ò»Ñ§Ğ£»òÓĞÍ¬Ò»°®ºÃ£¬ÓÖÓĞ¹²Í¬ºÃÓÑµÄÈË
+#ä¸è¯¥ç”¨æˆ·åœ¨åŒä¸€å­¦æ ¡æˆ–æœ‰åŒä¸€çˆ±å¥½ï¼Œåˆæœ‰å…±åŒå¥½å‹çš„äºº
 jiaoji<-intersect(bingji,friends.2nd)
 
-#Óë¸ÃÓÃ»§ÔÚÍ¬Ò»Ñ§Ğ£»òÓĞÍ¬Ò»°®ºÃ£¬Ã»ÓĞ¹²Í¬ºÃÓÑµÄÈË
+#ä¸è¯¥ç”¨æˆ·åœ¨åŒä¸€å­¦æ ¡æˆ–æœ‰åŒä¸€çˆ±å¥½ï¼Œæ²¡æœ‰å…±åŒå¥½å‹çš„äºº
 friends.0nd<-setdiff(bingji,jiaoji)
 
 friends.recommand0 <- sort(table(friends.0nd), dec = T)
@@ -85,18 +85,18 @@ for (i in 1:length(friends.recommand0))
 
 #friends.recommand0
 
-#¿ÉÄÜÈÏÊ¶Àï¹ØÁª¶È²»Îª0µÄÈË
+#å¯èƒ½è®¤è¯†é‡Œå…³è”åº¦ä¸ä¸º0çš„äºº
 id<-names(friends.recommand1)
 correlation<-as.numeric(friends.recommand1)
 recommand1<-data.frame(id,correlation)
 
-#¿ÉÄÜÈÏÊ¶Àï¹ØÁª¶ÈÎª0µÄÈË
+#å¯èƒ½è®¤è¯†é‡Œå…³è”åº¦ä¸º0çš„äºº
 id<-names(friends.recommand0)
 correlation<-as.numeric(friends.recommand0)
 recommand0<-data.frame(id,correlation)
 
-#¿ÉÄÜÈÏÊ¶µÄÈËÅÅĞò
+#å¯èƒ½è®¤è¯†çš„äººæ’åº
 recommand<-rbind(recommand1,recommand0)
 
-cat("idÊÇ",uid,"µÄÍÆ¼öºÃÓÑ¹ØÁª¶ÈÅÅĞĞÈçÏÂ£º")
+cat("idæ˜¯",uid,"çš„æ¨èå¥½å‹å…³è”åº¦æ’è¡Œå¦‚ä¸‹ï¼š")
 recommand
