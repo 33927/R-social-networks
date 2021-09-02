@@ -42,10 +42,6 @@ visNetwork(nodes, friends) %>%
 ```
 
 ```{r}
-library(igraph)
-```
-
-```{r}
 # 选定拥有合适好友数量的用户
 #uid <- 6
 # 输入ID
