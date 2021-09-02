@@ -24,7 +24,7 @@ visNetwork(nodes, friends)
 
 visNetwork(nodes, friends)  %>% visLegend()
 ledges <- data.frame(color = unique(nodes$color.background), 
-                    label = unique(c("射箭","篮球","画画", "击剑"))) 
+                    label = unique(c("Archery","Basketball","Drawing","Fencing"))) 
 
 visNetwork(nodes, friends) %>%
   visOptions(selectedBy = "hobby")%>%
@@ -36,8 +36,8 @@ visNetwork(nodes, friends) %>%
 # 选定拥有合适好友数量的用户
 #uid <- 6
 # 输入ID
-uid<-readline(prompt = "请输入id（推荐6或15）: ")
-cat("你输入的id是：",uid)
+uid<-readline(prompt = "please input id(recommend 6 or 15):")
+cat("id is ",uid)
 ```
 
 ```{r}
@@ -131,6 +131,6 @@ recommand<-rbind(recommand1,recommand0)
 ```
 
 ```{r}
-cat("id是",uid,"的推荐好友关联度排行如下：")
+cat("The association ranking of recommended friends with ID ",uid," is as follows:")
 recommand
 ```
