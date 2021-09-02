@@ -1,5 +1,0 @@
-dependencies:
-  - R=4
-  - pip:
-    - visNetwork
-    - igraph
